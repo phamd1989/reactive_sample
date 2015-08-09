@@ -16,6 +16,7 @@ build/
 target
 pom.xml.*
 release.properties
+local.properties
 
 .idea
 *.iml
