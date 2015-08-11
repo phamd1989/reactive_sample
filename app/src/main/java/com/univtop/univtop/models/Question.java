@@ -12,6 +12,7 @@ public class Question {
     private List<String> tags;
     private String questionDesc;
 
+    public Question() {}
     // to create fake data
     public Question(String username, String questionDesc) {
         this.username = username;

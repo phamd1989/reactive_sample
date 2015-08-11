@@ -2,6 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/llTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" >
+    </LinearLayout>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -9,7 +19,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/llTags"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,8 +29,7 @@
         android:id="@+id/tvUsername"
         android:layout_below="@+id/ivUser"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,6 +37,9 @@
         android:text="Question"
         android:id="@+id/tvQuestionDesc"
         android:layout_toRightOf="@+id/ivUser"
+        android:layout_below="@+id/llTags"
         android:layout_alignBaseline="@+id/ivUser"
         android:layout_marginLeft="16dp" />
+
+
 </RelativeLayout>
