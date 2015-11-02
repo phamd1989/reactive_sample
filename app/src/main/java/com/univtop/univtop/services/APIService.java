@@ -23,7 +23,7 @@ import rx.Observable;
  * Created by dungpham on 11/1/15.
  */
 public class APIService extends UnivtopRequestInterceptor {
-    public static final String API_URL = BuildConfig.DEBUG ? "http://development.univtop.com/api/v1" : "http://development.univtop.com/api/v1";
+    public static final String API_URL = BuildConfig.DEBUG ? "http://development.univtop.com" : "http://development.univtop.com";
     private static volatile APIService instance = null;
     private Api mApi;
 
@@ -65,7 +65,7 @@ public class APIService extends UnivtopRequestInterceptor {
     }
 
     public interface Api {
-        @GET("/question?format=json")
+        @GET("/api/v1/question?format=json")
         Observable<PageableList<Question>> getPublicQuestions(
                 @Query("limit") int limit,
                 @Query("offset") int offset);
