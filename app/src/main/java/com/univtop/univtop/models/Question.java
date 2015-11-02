@@ -1,61 +1,25 @@
 package com.univtop.univtop.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by duncapham on 8/9/15.
  */
-public class Question {
-    private String profilePicUrl;
-    private String username;
-    private String qId;
-    private List<String> tags;
-    private String questionDesc;
+public class Question implements Serializable{
+    private String content;
+    private String create_date;
+    private String title;
 
-    public Question() {}
-    // to create fake data
-    public Question(String username, String questionDesc) {
-        this.username = username;
-        this.questionDesc = questionDesc;
+    public String getContent() {
+        return content;
     }
 
-    public String getProfilePicUrl() {
-        return profilePicUrl;
+    public String getCreate_date() {
+        return create_date;
     }
 
-    public void setProfilePicUrl(String profilePicUrl) {
-        this.profilePicUrl = profilePicUrl;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getqId() {
-        return qId;
-    }
-
-    public void setqId(String qId) {
-        this.qId = qId;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
-
-    public String getQuestionDesc() {
-        return questionDesc;
-    }
-
-    public void setQuestionDesc(String questionDesc) {
-        this.questionDesc = questionDesc;
+    public String getTitle() {
+        return title;
     }
 }

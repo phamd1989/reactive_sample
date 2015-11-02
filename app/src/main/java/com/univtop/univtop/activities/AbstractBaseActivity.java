@@ -33,7 +33,6 @@ public class AbstractBaseActivity extends AppCompatActivity {
     public static int REQUEST_CODE_LOGIN = 7051;
     private Dialog mWaitDialog;
     private boolean isResumed = false;
-    private Dialog mForceUpdateDialog;
 
     Handler handler;
     Runnable mHandlerTask;
@@ -178,9 +177,7 @@ public class AbstractBaseActivity extends AppCompatActivity {
         }
     }
 
-    public void onEvent(NotificationEvent event) {
-        //
-    }
+    public void onEvent(NotificationEvent event) {}
 
     public void onLoggedIn() {}
 

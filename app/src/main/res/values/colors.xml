@@ -2,9 +2,12 @@
 <resources>
     <color name="primary">@color/teal</color>
     <color name="primary_dark">#35909B</color>
+    <color name="primary_transparent">@color/teal_transparent</color>
 
     <color name="teal">#42B4C2</color>
     <color name="white">#FFFFFF</color>
     <color name="light_heavy_gray">#878787</color>
     <color name="grey">#CCCCCC</color>
+    <color name="teal_transparent">#8042B4C2</color>
+
 </resources>

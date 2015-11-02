@@ -29,4 +29,13 @@
         <item name="elevation">2dp</item>
     </style>
 
+    <style name="Button"></style>
+
+    <style name="Button.NewPosts">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/button_blue_green</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

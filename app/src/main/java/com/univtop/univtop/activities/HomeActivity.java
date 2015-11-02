@@ -22,7 +22,7 @@ public class HomeActivity extends AbstractBaseActivity {
 
         ButterKnife.bind(this);
         setupToolbar();
-        setupActionBar(null);
+        setupActionBar("Home");
 
         mFragment = new NewsFeedFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();

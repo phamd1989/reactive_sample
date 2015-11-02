@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="please_wait">Please Wait...</string>
+    <string name="tap_for_new_posts">Tap for new posts</string>
+    <string name="oops_a_server_error_has_occurred">Oops! A server error has occurred.</string>
+
 </resources>
