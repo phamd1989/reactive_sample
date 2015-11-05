@@ -26,9 +26,12 @@
         <item name="android:textColorHint">@color/white</item>
         <item name="colorPrimary">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
-        <item name="elevation">2dp</item>
+        <item name="elevation">4dp</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:background">@color/primary</item>
+    </style>
     <style name="Button"></style>
 
     <style name="Button.NewPosts">

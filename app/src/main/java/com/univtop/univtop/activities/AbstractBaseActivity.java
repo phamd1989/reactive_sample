@@ -121,8 +121,11 @@ public class AbstractBaseActivity extends AppCompatActivity {
     protected void setupToolbar() {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            final ActionBar ab = getSupportActionBar();
+            ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

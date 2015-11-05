@@ -13,4 +13,5 @@ public interface API {
     public void getTrendingFeedData(@Query("limit") int limit,
                                     @Query("offset") int offset,
                                     Callback<Response> response);
+
 }

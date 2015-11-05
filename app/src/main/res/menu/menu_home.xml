@@ -3,23 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
-
-    <item
-        android:id="@+id/action_compose"
-        android:icon="@mipmap/icn_search"
-        android:title="1"
-        app:showAsAction="always" />
-
     <item
         android:id="@+id/action_filter"
         android:icon="@mipmap/icn_search"
-        android:title="1"
-        app:showAsAction="always" />
+        android:title="@string/action_search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
 
     <item
+        android:id="@+id/action_compose"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/action_compose"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_conversations"
-        android:icon="@mipmap/icn_search"
-        android:title="1"
-        app:showAsAction="always" />
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/action_conversation"
+        app:showAsAction="never" />
 
 </menu>
