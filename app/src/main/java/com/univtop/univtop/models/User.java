@@ -2,50 +2,49 @@ package com.univtop.univtop.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by haipn on 11/5/15.
  */
-public class User {
-    @SerializedName("first_name")
-    String firstName;
+public class User implements Serializable{
+    String first_name;
 
-    @SerializedName("last_name")
-    String lastName;
+    String last_name;
 
-    @SerializedName("username")
-    String userName;
+    String username;
 
-    String email;
+    String resource_uri;
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getEmail() {
-        return email;
+        return resource_uri;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.resource_uri = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 }

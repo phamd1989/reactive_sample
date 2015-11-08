@@ -22,6 +22,7 @@ import java.util.Set;
 public class PrefManager {
     private static volatile PrefManager instance = null;
     private SharedPreferences prefs;
+    private static final String UNIVTOP_PREF = "univtop pref";
 
     public static PrefManager getInstance() {
         if (instance == null) {
@@ -37,7 +38,7 @@ public class PrefManager {
 
     private PrefManager() {
         prefs = UnivtopApplication.getInstance().getSharedPreferences(
-                "pointblank_key", Context.MODE_MULTI_PROCESS);
+                UNIVTOP_PREF, Context.MODE_MULTI_PROCESS);
     }
 
     public Set<String> getPrefStringSet(String key) {

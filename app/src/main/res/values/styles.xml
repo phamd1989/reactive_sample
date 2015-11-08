@@ -41,4 +41,57 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+
+    <style name="Text">
+        <item name="android:textColor">#4c4c4c</item>
+    </style>
+    <style name="Text.XLarge" parent="Text">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="Text.Large" parent="Text">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Text.Large.Bold" parent="Text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.MediumLarge" parent="Text">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text.Medium" parent="Text">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.Small" parent="Text">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Text.VerySmall" parent="Text">
+        <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="Text.MediumLarge.Blue" parent="Text.MediumLarge">
+        <item name="android:textColor">#048b9c</item>
+    </style>
+
+    <style name="text_regular" />
+
+    <style name="text_thin" />
+
+    <style name="Text.Large.Thin" parent="Text.Large" />
+
+    <style name="Text.Small.Thin" parent="Text.Small"/>
+
+    <style name="Drawer_TextView" parent="text_thin">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">12dp</item>
+    </style>
+
+    <style name="Text.Medium.Thin" parent="Text.Medium"></style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

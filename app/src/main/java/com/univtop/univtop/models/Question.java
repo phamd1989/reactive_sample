@@ -10,16 +10,23 @@ public class Question implements Serializable{
     private String content;
     private String create_date;
     private String title;
+    private int total_answer;
+    private int total_vote;
+    private User user_post;
 
-    public String getContent() {
+    public String getQuestionDetails() {
         return content;
     }
 
-    public String getCreate_date() {
-        return create_date;
-    }
+    public String getTimestamp() { return create_date; }
 
-    public String getTitle() {
+    public String getQuestionTitle() {
         return title;
     }
+
+    public int getVotes() {return total_vote;}
+
+    public int getAnswers() {return total_answer;}
+
+    public User getUser() {return user_post;}
 }

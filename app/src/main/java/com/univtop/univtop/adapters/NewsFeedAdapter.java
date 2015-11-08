@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.univtop.univtop.R;
 import com.univtop.univtop.models.Question;
 import com.univtop.univtop.services.APIService;
 import com.univtop.univtop.services.PagingApiService;
+
+import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,8 +33,22 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         View rootView;
-        @Bind(R.id.question_details)
+        @Bind(R.id.profile_pic_iv)
+        SimpleDraweeView profilePic;
+        @Bind(R.id.name_tv)
+        TextView name;
+        @Bind(R.id.timestamp_tv)
+        TextView timestamp;
+        @Bind(R.id.question_title_tv)
+        TextView questionTitle;
+        @Bind(R.id.question_details_tv)
         TextView questionDetails;
+        @Bind(R.id.upvote_btn)
+        View upvote;
+        @Bind(R.id.answer_tv)
+        TextView answers;
+        @Bind(R.id.follow_tv)
+        TextView follows;
 
         public ViewHolder(View v) {
             super(v);
@@ -50,9 +67,13 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
     @Override
     public void onBindContentViewHolder(RecyclerView.ViewHolder holder, int position) {
         Question question = getItemAtPosition(position);
-        String questionDetail = question.getTitle();
         final ViewHolder vh = (ViewHolder) holder;
-        vh.questionDetails.setText(questionDetail);
+        vh.name.setText(question.getUser().getUsername());
+        vh.timestamp.setText(question.getTimestamp());
+        vh.questionTitle.setText(question.getQuestionTitle());
+        vh.questionDetails.setText(question.getQuestionDetails());
+        vh.answers.setText(Integer.toString(question.getAnswers()) + " Answers");
+        vh.follows.setText(Integer.toString(question.getVotes()) + " Votes");
     }
 
     @Override
