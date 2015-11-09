@@ -5,14 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.univtop.univtop.NotificationActivity;
 import com.univtop.univtop.R;
 import com.univtop.univtop.fragments.NewsFeedFragment;
 
@@ -34,7 +35,7 @@ public class HomeActivity extends AbstractBaseActivity {
 
         ButterKnife.bind(this);
         setupToolbar();
-        setupActionBar("Home");
+//        setupActionBar("Home");
 
         mFragment = new NewsFeedFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
@@ -52,9 +53,22 @@ public class HomeActivity extends AbstractBaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         mOptionsMenu = menu;
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_filter));
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int menuId = item.getItemId();
+        switch (menuId) {
+            case R.id.action_notification:
+                startActivity(new Intent(this, NotificationActivity.class));
+                break;
+            default:
+                break;
+        }
         return true;
     }
 
@@ -96,5 +110,11 @@ public class HomeActivity extends AbstractBaseActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    @Override
+    protected void setupToolbar() {
+        super.setupToolbar();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 }

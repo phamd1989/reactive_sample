@@ -74,6 +74,7 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
         vh.questionDetails.setText(question.getQuestionDetails());
         vh.answers.setText(Integer.toString(question.getAnswers()) + " Answers");
         vh.follows.setText(Integer.toString(question.getVotes()) + " Votes");
+        vh.profilePic.setImageURI(Uri.parse(question.getUser().getAvatar()));
     }
 
     @Override

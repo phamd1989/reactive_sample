@@ -9,4 +9,6 @@
     <string name="action_search">Search</string>
     <string name="action_compose">Compose</string>
     <string name="action_conversation">Conversation</string>
+    <string name="action_notification">Notifications</string>
+    <string name="action_profile">Profile</string>
 </resources>

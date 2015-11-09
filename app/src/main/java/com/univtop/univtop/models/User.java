@@ -16,6 +16,8 @@ public class User implements Serializable{
 
     String resource_uri;
 
+    String avatar;
+
     public String getFirst_name() {
         return first_name;
     }
@@ -46,5 +48,9 @@ public class User implements Serializable{
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 }
