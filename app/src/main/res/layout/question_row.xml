@@ -123,35 +123,41 @@
                 tools:text="3000 Answers"/>
         </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1">-->
-            <!--<TextView-->
-                <!--android:id="@+id/follow_tv"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:gravity="center"-->
-                <!--tools:text="5 Follows"/>-->
-        <!--</LinearLayout>-->
-
         <FrameLayout
-            style="@style/Button.GreenBorder"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1">
 
-            <ImageView
+            <FrameLayout
                 android:id="@+id/follow_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Button.GreenBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:src="@drawable/selector_profile_follow" />
+                android:visibility="gone" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/selector_profile_follow" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/unfollow_btn"
+                style="@style/Button.WhiteBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="gone" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/selector_profile_following" />
+            </FrameLayout>
         </FrameLayout>
 
     </LinearLayout>

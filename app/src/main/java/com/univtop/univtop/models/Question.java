@@ -13,6 +13,7 @@ public class Question implements Serializable{
     private int total_answer;
     private int total_vote;
     private User user_post;
+    private boolean is_followed;
 
     public String getQuestionDetails() {
         return content;
@@ -29,4 +30,13 @@ public class Question implements Serializable{
     public int getAnswers() {return total_answer;}
 
     public User getUser() {return user_post;}
+
+    public boolean is_followed() {
+        return is_followed;
+    }
+
+    public void setIs_followed(boolean is_followed) {
+        this.is_followed = is_followed;
+    }
+
 }

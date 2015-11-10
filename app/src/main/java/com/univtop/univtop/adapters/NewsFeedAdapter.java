@@ -50,7 +50,9 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
         @Bind(R.id.answer_tv)
         TextView answers;
         @Bind(R.id.follow_btn)
-        ImageView followBtn;
+        View followBtn;
+        @Bind(R.id.unfollow_btn)
+        View unfollowBtn;
         @Bind(R.id.upvotes_tv)
         TextView upvotes;
 
@@ -70,8 +72,10 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
 
     @Override
     public void onBindContentViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Question question = getItemAtPosition(position);
+        final Question question = getItemAtPosition(position);
         final ViewHolder vh = (ViewHolder) holder;
+        final boolean isFollowed = question.is_followed();
+
         vh.name.setText(question.getUser().getUsername());
         vh.timestamp.setText(question.getTimestamp());
         vh.questionTitle.setText(question.getQuestionTitle());
@@ -81,18 +85,30 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
             vh.upvotes.setText(Integer.toString(question.getVotes()));
         }
         vh.profilePic.setImageURI(Uri.parse(question.getUser().getAvatar()));
-        vh.followBtn.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-            @Override
-            public void onClick(View v) {
-                if (mIsFollowed) {
-                    vh.followBtn.setBackground(mContext.getResources().getDrawable(R.drawable.selector_profile_follow));
-                } else {
-                    vh.followBtn.setBackground(mContext.getResources().getDrawable(R.drawable.selector_profile_following));
+        if (isFollowed) {
+            vh.followBtn.setVisibility(View.GONE);
+            vh.unfollowBtn.setVisibility(View.VISIBLE);
+            vh.unfollowBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    vh.followBtn.setVisibility(View.VISIBLE);
+                    vh.unfollowBtn.setVisibility(View.GONE);
+                    question.setIs_followed(!isFollowed);
                 }
-                mIsFollowed = !mIsFollowed;
-            }
-        });
+            });
+        } else {
+            vh.followBtn.setVisibility(View.VISIBLE);
+            vh.unfollowBtn.setVisibility(View.GONE);
+            vh.followBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    vh.followBtn.setVisibility(View.GONE);
+                    vh.unfollowBtn.setVisibility(View.VISIBLE);
+                    question.setIs_followed(!isFollowed);
+                }
+            });
+        }
+
     }
 
     @Override
