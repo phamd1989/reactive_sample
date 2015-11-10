@@ -41,6 +41,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Button.GreenBorder" parent="Button">
+        <item name="android:background">@drawable/pill_button_green_border</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="Text">
         <item name="android:textColor">#4c4c4c</item>

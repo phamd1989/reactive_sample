@@ -3,6 +3,7 @@
     <color name="primary">@color/teal</color>
     <color name="primary_dark">#35909B</color>
     <color name="primary_transparent">@color/teal_transparent</color>
+    <color name="primary_very_light">#DFF1DE</color>
 
     <color name="teal">#42B4C2</color>
     <color name="white">#FFFFFF</color>
