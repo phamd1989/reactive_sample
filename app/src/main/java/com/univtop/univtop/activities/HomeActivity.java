@@ -35,7 +35,7 @@ public class HomeActivity extends AbstractBaseActivity {
 
         ButterKnife.bind(this);
         setupToolbar();
-//        setupActionBar("Home");
+        setupActionBar("");
 
         mFragment = new NewsFeedFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
@@ -63,12 +63,16 @@ public class HomeActivity extends AbstractBaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuId = item.getItemId();
         switch (menuId) {
+            case android.R.id.home:
+                mFragment.scrollToFirst();
+                return true;
             case R.id.action_notification:
                 startActivity(new Intent(this, NotificationActivity.class));
                 break;
             default:
                 break;
         }
+        super.onOptionsItemSelected(item);
         return true;
     }
 
@@ -113,8 +117,7 @@ public class HomeActivity extends AbstractBaseActivity {
     }
 
     @Override
-    protected void setupToolbar() {
-        super.setupToolbar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    protected HomeButtonType getHomeButtonType() {
+        return HomeButtonType.NEWSFEED;
     }
 }

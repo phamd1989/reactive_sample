@@ -45,6 +45,11 @@ public class AbstractBaseActivity extends AppCompatActivity {
         ACCOUNT;
     }
 
+    public enum HomeButtonType {
+        NEWSFEED,
+        BACK;
+    }
+
     public AccessLevel getAccessLevel() {
         return AccessLevel.PUBLIC;
     }
@@ -122,10 +127,16 @@ public class AbstractBaseActivity extends AppCompatActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             final ActionBar ab = getSupportActionBar();
-            ab.setHomeAsUpIndicator(R.drawable.icn_home);
-            ab.setDisplayHomeAsUpEnabled(true);
+            switch (getHomeButtonType()) {
+                case NEWSFEED:
+                    ab.setHomeAsUpIndicator(R.drawable.icn_home);
+                    ab.setDisplayHomeAsUpEnabled(true);
+                    return;
+                case BACK:
+                    ab.setDisplayHomeAsUpEnabled(true);
+                    return;
+            }
         }
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -185,4 +196,8 @@ public class AbstractBaseActivity extends AppCompatActivity {
     public void onLoggedIn() {}
 
     public void onLogInCancel() {}
+
+    protected HomeButtonType getHomeButtonType() {
+        return HomeButtonType.BACK;
+    }
 }

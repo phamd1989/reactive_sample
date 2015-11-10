@@ -113,4 +113,8 @@ public class NewsFeedFragment extends Fragment implements PageableListAdapter.Pa
     public void notEmpty() {
         // TODO: hide empty screen content
     }
+
+    public void scrollToFirst() {
+        mRecyclerView.scrollToPosition(0);
+    }
 }
