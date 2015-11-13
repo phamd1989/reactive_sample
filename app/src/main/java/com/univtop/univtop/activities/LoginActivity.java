@@ -16,6 +16,7 @@ import com.univtop.univtop.R;
 import com.univtop.univtop.models.LoginResponse;
 import com.univtop.univtop.services.APIService;
 import com.univtop.univtop.utils.DebugLog;
+import com.univtop.univtop.utils.UnivtopSubscriber;
 import com.univtop.univtop.utils.Utilities;
 
 import butterknife.ButterKnife;
@@ -24,7 +25,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AbstractBaseActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     public static final int RESULT_LOGIN_CANCEL = 1001;
@@ -78,9 +79,9 @@ public class LoginActivity extends AppCompatActivity {
         String email = mTvEmail.getText().toString();
         String password = mTvPassword.getText().toString();
 
-        APIService.getInstance().login(email, password, new Callback<LoginResponse>() {
+        APIService.getInstance().login(email, password).subscribe(new UnivtopSubscriber<LoginResponse>() {
             @Override
-            public void success(LoginResponse loginResponse, Response response) {
+            public void onNext(LoginResponse loginResponse) {
                 if (loginResponse != null) {
                     DebugLog.d("api key:" + loginResponse.api_key);
                     if (loginResponse.api_key != null && !loginResponse.api_key.isEmpty()) {
@@ -92,13 +93,37 @@ public class LoginActivity extends AppCompatActivity {
                         onLoginFailed();
                     }
                 }
+                super.onNext(loginResponse);
             }
 
             @Override
-            public void failure(RetrofitError error) {
+            public void onError(Throwable e) {
                 onLoginFailed();
+                super.onError(e);
             }
         });
+
+//                new Callback<LoginResponse>() {
+//            @Override
+//            public void success(LoginResponse loginResponse, Response response) {
+//                if (loginResponse != null) {
+//                    DebugLog.d("api key:" + loginResponse.api_key);
+//                    if (loginResponse.api_key != null && !loginResponse.api_key.isEmpty()) {
+//                        Utilities.setApiKey(LoginActivity.this, loginResponse.api_key);
+//                        Intent top = new Intent(getApplicationContext(), HomeActivity.class);
+//                        startActivity(top);
+//                        finish();
+//                    } else {
+//                        onLoginFailed();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//                onLoginFailed();
+//            }
+//        });
     }
 
 

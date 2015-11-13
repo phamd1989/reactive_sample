@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.univtop.univtop.R;
 import com.univtop.univtop.models.LoginResponse;
 import com.univtop.univtop.services.APIService;
+import com.univtop.univtop.utils.UnivtopSubscriber;
 import com.univtop.univtop.utils.Utilities;
 
 import butterknife.Bind;
@@ -22,7 +23,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AbstractBaseActivity {
     private static final String TAG = "SignupActivity";
 
     @Bind(R.id.input_firstname) EditText mEdtFirstName;
@@ -76,9 +77,14 @@ public class SignupActivity extends AppCompatActivity {
         String email = mEdtEmail.getText().toString();
         String password = mEdtPassword.getText().toString();
         String confirmPassword = mEdtConfirmPassword.getText().toString();
-        APIService.getInstance().signUp(firstname, lastname, email, password, new Callback<LoginResponse>() {
+        APIService.getInstance().signUp(firstname, lastname, email, password).subscribe(new UnivtopSubscriber<LoginResponse>() {
             @Override
-            public void success(LoginResponse loginResponse, Response response) {
+            public void onCompleted() {
+                super.onCompleted();
+            }
+
+            @Override
+            public void onNext(LoginResponse loginResponse) {
                 if (loginResponse != null) {
                     if (loginResponse.api_key != null && !loginResponse.api_key.isEmpty()) {
                         Utilities.setApiKey(SignupActivity.this, loginResponse.api_key);
@@ -89,11 +95,13 @@ public class SignupActivity extends AppCompatActivity {
                         onSignupFailed();
                     }
                 }
+                super.onNext(loginResponse);
             }
 
             @Override
-            public void failure(RetrofitError error) {
+            public void onError(Throwable e) {
                 onSignupFailed();
+                super.onError(e);
             }
         });
 

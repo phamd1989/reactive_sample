@@ -73,12 +73,12 @@ public class APIService extends UnivtopRequestInterceptor {
         return mApi.getPublicQuestions(limit, offset);
     }
 
-    public void login(String email, String password, Callback<LoginResponse> callback) {
-        mApi.login(email, password, callback);
+    public Observable<LoginResponse> login(String email, String password) {
+        return mApi.login(email, password);
     }
 
-    public void signUp(String firstName, String lastName, String email, String password, Callback<LoginResponse> callback) {
-        mApi.signUp(firstName, lastName, email, password, callback);
+    public Observable<LoginResponse> signUp(String firstName, String lastName, String email, String password) {
+        return mApi.signUp(firstName, lastName, email, password);
     }
     public interface Api {
         @GET("/api/v1/question?format=json")
@@ -88,10 +88,10 @@ public class APIService extends UnivtopRequestInterceptor {
 
         @FormUrlEncoded
         @POST("/api/v1/auth/login/?format=json")
-        void login(@Field("email") String email, @Field("password") String password, Callback<LoginResponse> callback);
+        Observable<LoginResponse> login(@Field("email") String email, @Field("password") String password);
 
         @FormUrlEncoded
         @POST("/api/v1/auth/signup/?format=json")
-        void signUp(@Field("first_name") String first_name, @Field("last_name") String last_name, @Field("email") String email, @Field("password") String password, Callback<LoginResponse> callback);
+        Observable<LoginResponse> signUp(@Field("first_name") String first_name, @Field("last_name") String last_name, @Field("email") String email, @Field("password") String password);
     }
 }
