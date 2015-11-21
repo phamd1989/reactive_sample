@@ -11,4 +11,6 @@
     <string name="action_conversation">Conversation</string>
     <string name="action_notification">Notifications</string>
     <string name="action_profile">Profile</string>
+    <string name="action_question_follow">Follow</string>
+    <string name="action_question_following">Following</string>
 </resources>

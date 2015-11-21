@@ -2,6 +2,7 @@ package com.univtop.univtop.services;
 
 import android.util.Log;
 
+import com.facebook.stetho.okhttp.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -51,6 +52,7 @@ public class APIService extends UnivtopRequestInterceptor {
         OkHttpClient client = new OkHttpClient();
         client.setConnectTimeout(30, TimeUnit.SECONDS);
         client.setReadTimeout(3, TimeUnit.MINUTES);
+        client.networkInterceptors().add(new StethoInterceptor());
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Question.class, new QuestionDeserializer())

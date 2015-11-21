@@ -7,6 +7,7 @@ import android.os.Handler;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.stetho.Stetho;
 import com.univtop.univtop.activities.AbstractBaseActivity;
 
 import java.net.CookieHandler;
@@ -56,6 +57,7 @@ public class UnivtopApplication extends Application {
                 .setDownsampleEnabled(true)
                 .build();
         Fresco.initialize(this, ipconfig);
+        Stetho.initializeWithDefaults(this);
     }
 
     public static API getClient() {

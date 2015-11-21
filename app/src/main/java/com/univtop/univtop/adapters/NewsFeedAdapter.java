@@ -28,6 +28,15 @@ import rx.schedulers.Schedulers;
 public class NewsFeedAdapter extends PageableListAdapter<Question> {
 
     private boolean mIsFollowed = false;
+    private ClickQuestionDetailListener mListener;
+
+    public interface ClickQuestionDetailListener {
+        void launch(final Question question, final int pos);
+    }
+
+    public void setQuestionDetailListener(ClickQuestionDetailListener listener) {
+        mListener = listener;
+    }
 
     public NewsFeedAdapter(Context context) {
         super(context);
@@ -70,8 +79,34 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
         return viewHolder;
     }
 
+    private View.OnClickListener getFollowClickListener(final ViewHolder vh, final Question question) {
+        final boolean isFollowed = question.is_followed();
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.followBtn.setVisibility(View.GONE);
+                vh.unfollowBtn.setVisibility(View.VISIBLE);
+                vh.unfollowBtn.setOnClickListener(getUnfollowClickListener(vh, question));
+                question.setIs_followed(!isFollowed);
+            }
+        };
+    }
+
+    private View.OnClickListener getUnfollowClickListener(final ViewHolder vh, final Question question) {
+        final boolean isFollowed = question.is_followed();
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.followBtn.setVisibility(View.VISIBLE);
+                vh.followBtn.setOnClickListener(getFollowClickListener(vh, question));
+                vh.unfollowBtn.setVisibility(View.GONE);
+                question.setIs_followed(!isFollowed);
+            }
+        };
+    }
+
     @Override
-    public void onBindContentViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindContentViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final Question question = getItemAtPosition(position);
         final ViewHolder vh = (ViewHolder) holder;
         final boolean isFollowed = question.is_followed();
@@ -88,27 +123,20 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
         if (isFollowed) {
             vh.followBtn.setVisibility(View.GONE);
             vh.unfollowBtn.setVisibility(View.VISIBLE);
-            vh.unfollowBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    vh.followBtn.setVisibility(View.VISIBLE);
-                    vh.unfollowBtn.setVisibility(View.GONE);
-                    question.setIs_followed(!isFollowed);
-                }
-            });
+            vh.unfollowBtn.setOnClickListener(getUnfollowClickListener(vh, question));
         } else {
             vh.followBtn.setVisibility(View.VISIBLE);
             vh.unfollowBtn.setVisibility(View.GONE);
-            vh.followBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    vh.followBtn.setVisibility(View.GONE);
-                    vh.unfollowBtn.setVisibility(View.VISIBLE);
-                    question.setIs_followed(!isFollowed);
-                }
-            });
+            vh.followBtn.setOnClickListener(getFollowClickListener(vh, question));
         }
-
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.launch(question, position);
+                }
+            }
+        });
     }
 
     @Override
@@ -122,5 +150,11 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getSubscriber());
+    }
+
+    public void refreshAtPos(int pos, boolean isFollowing) {
+        Question question = getItemAtPosition(pos);
+        question.setIs_followed(isFollowing);
+        notifyItemChanged(pos);
     }
 }
