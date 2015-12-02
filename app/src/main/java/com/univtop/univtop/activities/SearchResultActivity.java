@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.provider.SearchRecentSuggestions;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,6 +26,7 @@ import com.univtop.univtop.adapters.NewsFeedAdapter;
 import com.univtop.univtop.adapters.PageableListAdapter;
 import com.univtop.univtop.services.APIService;
 import com.univtop.univtop.utils.DebugLog;
+import com.univtop.univtop.utils.UnivtopSuggestionProvider;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -82,6 +84,10 @@ public class SearchResultActivity extends AbstractBaseActivity implements Pageab
 
     private void doMySearch(String query) {
         mQuery = query;
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                UnivtopSuggestionProvider.AUTHORITY, UnivtopSuggestionProvider.MODE);
+        suggestions.saveRecentQuery(query, null);
+
         refreshContent();
     }
 
