@@ -23,6 +23,8 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Part;
+import retrofit.http.Path;
 import retrofit.http.Query;
 import rx.Observable;
 
@@ -73,6 +75,10 @@ public class APIService extends UnivtopRequestInterceptor {
         return mApi.getPublicQuestions(limit, offset);
     }
 
+    public Observable<PageableList<Question>> getQueryQuestions(int limit, int offset, String query) {
+        return mApi.getQueryQuestions(limit, offset, query);
+    }
+
     public Observable<LoginResponse> login(String email, String password) {
         return mApi.login(email, password);
     }
@@ -85,6 +91,11 @@ public class APIService extends UnivtopRequestInterceptor {
         Observable<PageableList<Question>> getPublicQuestions(
                 @Query("limit") int limit,
                 @Query("offset") int offset);
+
+        @GET("/api/v1/question?format=json")
+        Observable<PageableList<Question>> getQueryQuestions(
+                @Query("limit") int limit,
+                @Query("offset") int offset, @Query("q") String query);
 
         @FormUrlEncoded
         @POST("/api/v1/auth/login/?format=json")
