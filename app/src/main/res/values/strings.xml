@@ -13,4 +13,6 @@
     <string name="action_profile">Profile</string>
     <string name="action_question_follow">Follow</string>
     <string name="action_question_following">Following</string>
+    <string name="title_activity_search_result">SearchResultActivity</string>
+    <string name="search_hint">Search</string>
 </resources>

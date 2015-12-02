@@ -53,9 +53,9 @@ public class HomeActivity extends AbstractBaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         mOptionsMenu = menu;
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 
@@ -68,6 +68,9 @@ public class HomeActivity extends AbstractBaseActivity {
                 return true;
             case R.id.action_notification:
                 startActivity(new Intent(this, NotificationActivity.class));
+                break;
+            case R.id.action_search:
+                startActivity(new Intent(this, SearchActivity.class));
                 break;
             default:
                 break;
