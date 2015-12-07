@@ -111,16 +111,23 @@ public class NewsFeedFragment extends Fragment implements PageableListAdapter.Pa
 
     @Override
     public void empty() {
-        UnivtopApplication.getInstance().getMainThreadHandler().postDelayed(new Runnable() {
+        UnivtopApplication.getInstance().getMainThreadHandler().post(new Runnable() {
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(true);
+                mEmptySRL.setRefreshing(true);
             }
-        }, 100);    }
+        });
+    }
 
     @Override
     public void notEmpty() {
-        // TODO: hide empty screen content
+        UnivtopApplication.getInstance().getMainThreadHandler().post(new Runnable() {
+            @Override
+            public void run() {
+//                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
     }
 
     public void scrollToFirst() {
