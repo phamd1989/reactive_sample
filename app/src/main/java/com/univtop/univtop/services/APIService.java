@@ -77,8 +77,8 @@ public class APIService extends UnivtopRequestInterceptor {
         return mApi.getPublicQuestions(limit, offset);
     }
 
-    public Observable<PageableList<Question>> getQueryQuestions(int limit, int offset, String query) {
-        return mApi.getQueryQuestions(limit, offset, query);
+    public Observable<PageableList<Question>> getSearchResults(String query) {
+        return mApi.getQueryQuestions(query);
     }
 
     public Observable<LoginResponse> login(String email, String password) {
@@ -88,16 +88,15 @@ public class APIService extends UnivtopRequestInterceptor {
     public Observable<LoginResponse> signUp(String firstName, String lastName, String email, String password) {
         return mApi.signUp(firstName, lastName, email, password);
     }
+
     public interface Api {
         @GET("/api/v1/question?format=json")
         Observable<PageableList<Question>> getPublicQuestions(
                 @Query("limit") int limit,
                 @Query("offset") int offset);
 
-        @GET("/api/v1/question?format=json")
-        Observable<PageableList<Question>> getQueryQuestions(
-                @Query("limit") int limit,
-                @Query("offset") int offset, @Query("q") String query);
+        @GET("/api/v1/search/all?format=json")
+        Observable<PageableList<Question>> getQueryQuestions(@Query("q") String query);
 
         @FormUrlEncoded
         @POST("/api/v1/auth/login/?format=json")
