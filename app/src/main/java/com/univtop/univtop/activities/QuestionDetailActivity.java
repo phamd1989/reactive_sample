@@ -2,22 +2,16 @@ package com.univtop.univtop.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.univtop.univtop.R;
 import com.univtop.univtop.adapters.QuestionAdapter;
-import com.univtop.univtop.fragments.NewsFeedFragment;
+import com.univtop.univtop.fragments.QuestionsFeedFragment;
 import com.univtop.univtop.models.Question;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class QuestionDetailActivity extends AbstractBaseActivity {
@@ -49,8 +43,8 @@ public class QuestionDetailActivity extends AbstractBaseActivity {
 
     public static Intent getLaunchIntent(Context context, Question question, int pos) {
         Intent intent = new Intent(context, QuestionDetailActivity.class);
-        intent.putExtra(NewsFeedFragment.QUESTION, question);
-        intent.putExtra(NewsFeedFragment.POSITION, pos);
+        intent.putExtra(QuestionsFeedFragment.QUESTION, question);
+        intent.putExtra(QuestionsFeedFragment.POSITION, pos);
         return intent;
     }
 
@@ -63,8 +57,8 @@ public class QuestionDetailActivity extends AbstractBaseActivity {
         setupActionBar("Question");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.profile_recyclerView);
-        mQuestion = (Question) getIntent().getSerializableExtra(NewsFeedFragment.QUESTION);
-        mPos = getIntent().getIntExtra(NewsFeedFragment.POSITION, -1);
+        mQuestion = (Question) getIntent().getSerializableExtra(QuestionsFeedFragment.QUESTION);
+        mPos = getIntent().getIntExtra(QuestionsFeedFragment.POSITION, -1);
         QuestionAdapter adapter = new QuestionAdapter(mQuestion);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -128,8 +122,8 @@ public class QuestionDetailActivity extends AbstractBaseActivity {
         switch (menuId) {
             case android.R.id.home:
                 Intent data = new Intent();
-                data.putExtra(NewsFeedFragment.POSITION, mPos);
-                data.putExtra(NewsFeedFragment.FOLLOWING, mQuestion.is_followed());
+                data.putExtra(QuestionsFeedFragment.POSITION, mPos);
+                data.putExtra(QuestionsFeedFragment.FOLLOWING, mQuestion.is_followed());
                 setResult(RESULT_OK, data);
                 finish();
                 break;

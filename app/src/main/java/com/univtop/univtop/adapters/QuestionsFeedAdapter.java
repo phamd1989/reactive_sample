@@ -25,7 +25,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by dungpham on 11/1/15.
  */
-public class NewsFeedAdapter extends PageableListAdapter<Question> {
+public class QuestionsFeedAdapter extends PageableListAdapter<Question> {
 
     private boolean mIsFollowed = false;
     private ClickQuestionDetailListener mListener;
@@ -38,7 +38,7 @@ public class NewsFeedAdapter extends PageableListAdapter<Question> {
         mListener = listener;
     }
 
-    public NewsFeedAdapter(Context context) {
+    public QuestionsFeedAdapter(Context context) {
         super(context);
     }
 

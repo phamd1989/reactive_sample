@@ -23,7 +23,6 @@ public class PageableListAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vi
     public static final int LOADING_TYPE = 0;
 
     private List<T> mData;
-    private Class mWrapper;
     Meta mCursor;
     protected Context mContext;
 
@@ -59,7 +58,6 @@ public class PageableListAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vi
         }
 
         public void setupView(){
-
         }
     }
 

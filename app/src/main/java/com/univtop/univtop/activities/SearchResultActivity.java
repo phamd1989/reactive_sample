@@ -14,7 +14,7 @@ import android.view.MenuItem;
 
 import com.univtop.univtop.R;
 import com.univtop.univtop.UnivtopApplication;
-import com.univtop.univtop.adapters.NewsFeedAdapter;
+import com.univtop.univtop.adapters.QuestionsFeedAdapter;
 import com.univtop.univtop.adapters.PageableListAdapter;
 import com.univtop.univtop.services.APIService;
 import com.univtop.univtop.utils.DebugLog;
@@ -32,7 +32,7 @@ public class SearchResultActivity extends AbstractBaseActivity implements Pageab
     @Bind(R.id.searchresult_swiperefreshlayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private NewsFeedAdapter mAdapter;
+    private QuestionsFeedAdapter mAdapter;
     private String mQuery;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class SearchResultActivity extends AbstractBaseActivity implements Pageab
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         if (mAdapter == null) {
-            mAdapter = new NewsFeedAdapter(this);
+            mAdapter = new QuestionsFeedAdapter(this);
             mAdapter.setLoading(true);
             mAdapter.setListener(this);
         }

@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.univtop.univtop.R;
 import com.univtop.univtop.UnivtopApplication;
 import com.univtop.univtop.activities.QuestionDetailActivity;
-import com.univtop.univtop.adapters.NewsFeedAdapter;
+import com.univtop.univtop.adapters.QuestionsFeedAdapter;
 import com.univtop.univtop.adapters.PageableListAdapter;
 import com.univtop.univtop.models.Question;
 import com.univtop.univtop.services.APIService;
@@ -28,7 +28,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by dungpham on 11/1/15.
  */
-public class NewsFeedFragment extends Fragment implements PageableListAdapter.PageableListListener, NewsFeedAdapter.ClickQuestionDetailListener{
+public class QuestionsFeedFragment extends Fragment implements PageableListAdapter.PageableListListener, QuestionsFeedAdapter.ClickQuestionDetailListener{
 
     @Bind(R.id.newsfeed_recyclerView)
     RecyclerView mRecyclerView;
@@ -39,7 +39,7 @@ public class NewsFeedFragment extends Fragment implements PageableListAdapter.Pa
     @Bind(R.id.loadQuestions_button)
     Button mLoadQuestions;
 
-    private NewsFeedAdapter mAdapter;
+    private QuestionsFeedAdapter mAdapter;
     private final int QUESTION_DETAIL_CODE = 101;
     public static final String QUESTION = "question";
     public static final String POSITION = "position";
@@ -68,7 +68,7 @@ public class NewsFeedFragment extends Fragment implements PageableListAdapter.Pa
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         if (mAdapter == null) {
-            mAdapter = new NewsFeedAdapter(getActivity());
+            mAdapter = new QuestionsFeedAdapter(getActivity());
             mAdapter.setLoading(true);
             mAdapter.setListener(this);
             mAdapter.setQuestionDetailListener(this);

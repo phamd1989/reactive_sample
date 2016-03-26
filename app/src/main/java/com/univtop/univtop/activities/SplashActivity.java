@@ -18,12 +18,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent next = new Intent();
-
-                if (Utilities.getApiKey(SplashActivity.this) != null) {
-                    next.setClass(getApplicationContext(), HomeActivity.class);
-                } else {
-                    next.setClass(getApplicationContext(), LoginActivity.class);
-                }
+                next.setClass(getApplicationContext(), HomeActivity.class);
+//                if (Utilities.getApiKey(SplashActivity.this) != null) {
+//                    next.setClass(getApplicationContext(), HomeActivity.class);
+//                } else {
+//                    next.setClass(getApplicationContext(), LoginActivity.class);
+//                }
                 startActivity(next);
                 finish();
             }
