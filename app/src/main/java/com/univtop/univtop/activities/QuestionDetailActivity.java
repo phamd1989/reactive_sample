@@ -77,34 +77,34 @@ public class QuestionDetailActivity extends AbstractBaseActivity {
 //        if (isFollowed) {
 //            followBtn.setVisibility(View.GONE);
 //            unfollowBtn.setVisibility(View.VISIBLE);
-//            unfollowBtn.setOnClickListener(getUnfollowClickListener(mQuestion));
+//            unfollowBtn.setOnClickListener(onUnfollowClick(mQuestion));
 //        } else {
 //            followBtn.setVisibility(View.VISIBLE);
 //            unfollowBtn.setVisibility(View.GONE);
-//            followBtn.setOnClickListener(getFollowClickListener(mQuestion));
+//            followBtn.setOnClickListener(onFollowClick(mQuestion));
 //        }
     }
 
-//    private View.OnClickListener getFollowClickListener(final Question question) {
+//    private View.OnClickListener onFollowClick(final Question question) {
 //        final boolean isFollowed = question.is_followed();
 //        return new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                followBtn.setVisibility(View.GONE);
 //                unfollowBtn.setVisibility(View.VISIBLE);
-//                unfollowBtn.setOnClickListener(getUnfollowClickListener(question));
+//                unfollowBtn.setOnClickListener(onUnfollowClick(question));
 //                question.setIs_followed(!isFollowed);
 //            }
 //        };
 //    }
 //
-//    private View.OnClickListener getUnfollowClickListener(final Question question) {
+//    private View.OnClickListener onUnfollowClick(final Question question) {
 //        final boolean isFollowed = question.is_followed();
 //        return new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                followBtn.setVisibility(View.VISIBLE);
-//                followBtn.setOnClickListener(getFollowClickListener(question));
+//                followBtn.setOnClickListener(onFollowClick(question));
 //                unfollowBtn.setVisibility(View.GONE);
 //                question.setIs_followed(!isFollowed);
 //            }

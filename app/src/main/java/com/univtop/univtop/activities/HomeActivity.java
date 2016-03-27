@@ -12,12 +12,13 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.univtop.univtop.NotificationActivity;
 import com.univtop.univtop.R;
+import com.univtop.univtop.fragments.QuestionListFragment;
 import com.univtop.univtop.fragments.QuestionsFeedFragment;
 
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AbstractBaseActivity {
-    private QuestionsFeedFragment mFragment;
+    private QuestionListFragment mFragment;
     private Menu mOptionsMenu;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -34,7 +35,7 @@ public class HomeActivity extends AbstractBaseActivity {
         setupToolbar();
         setupActionBar("");
 
-        mFragment = new QuestionsFeedFragment();
+        mFragment = new QuestionListFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

@@ -7,6 +7,7 @@ import java.util.List;
  * Created by duncapham on 8/9/15.
  */
 public class Question implements Serializable{
+    private String id;
     private String content;
     private String create_date;
     private String title;
@@ -14,6 +15,10 @@ public class Question implements Serializable{
     private int total_vote;
     private User user_post;
     private boolean is_followed;
+
+    public String getId() {
+        return id;
+    }
 
     public String getQuestionDetails() {
         return content;
