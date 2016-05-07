@@ -77,6 +77,11 @@ public class APIService extends UnivtopRequestInterceptor {
         return mApi.getPublicQuestions(limit, offset);
     }
 
+    public Observable<PageableList<Question>> fetchNextPagePublicQuestions(String url) {
+        if (url == null) return null;
+        return mApi.fetchNextPagePublicQuestions(url);
+    }
+
     public Observable<PageableList<Question>> getSearchResults(String query) {
         return mApi.getQueryQuestions(query);
     }
@@ -97,6 +102,9 @@ public class APIService extends UnivtopRequestInterceptor {
 
         @GET("/api/v1/search/all?format=json")
         Observable<PageableList<Question>> getQueryQuestions(@Query("q") String query);
+
+        @GET("/{path}")
+        Observable<PageableList<Question>> fetchNextPagePublicQuestions(@Path(value = "path", encode = false) String path);
 
         @FormUrlEncoded
         @POST("/api/v1/auth/login/?format=json")

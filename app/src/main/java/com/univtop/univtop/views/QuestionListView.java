@@ -12,7 +12,7 @@ public interface QuestionListView {
 
     void showLoading();
 
-    void showQuestions(List<Question> questions);
+    void showQuestions(List<Question> questions, String nextPageUrl);
 
     void refreshFinished();
 }

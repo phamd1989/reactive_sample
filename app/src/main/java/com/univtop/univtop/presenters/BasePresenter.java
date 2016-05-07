@@ -43,6 +43,7 @@ public abstract class BasePresenter<M, V> {
 
     protected abstract void updateView();
 
+
     protected boolean setupDone() {
         return view() != null && model != null;
     }

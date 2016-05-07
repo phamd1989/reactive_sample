@@ -20,6 +20,8 @@ import butterknife.ButterKnife;
 public class HomeActivity extends AbstractBaseActivity {
     private QuestionListFragment mFragment;
     private Menu mOptionsMenu;
+    private static final String TAG_MY_FRAGMENT = "myFragment";
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -35,8 +37,12 @@ public class HomeActivity extends AbstractBaseActivity {
         setupToolbar();
         setupActionBar("");
 
-        mFragment = new QuestionListFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
+        if (savedInstanceState == null) {
+            mFragment = new QuestionListFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment, TAG_MY_FRAGMENT).commit();
+        } else {
+            mFragment = (QuestionListFragment) getSupportFragmentManager().findFragmentByTag(TAG_MY_FRAGMENT);
+        }
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();

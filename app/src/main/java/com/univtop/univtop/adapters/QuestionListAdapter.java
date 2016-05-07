@@ -16,6 +16,8 @@ import com.univtop.univtop.views.QuestionViewHolder;
  * Created by dungpham on 3/26/16.
  */
 public class QuestionListAdapter extends MvpRecyclerListAdapter<Question, QuestionPresenter, QuestionViewHolder>{
+    private String mNextPageUrl;
+
     @NonNull
     @Override
     protected QuestionPresenter createPresenter(@NonNull Question model) {
@@ -35,5 +37,14 @@ public class QuestionListAdapter extends MvpRecyclerListAdapter<Question, Questi
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_row, parent, false);
         QuestionViewHolder viewHolder = new QuestionViewHolder(v);
         return viewHolder;
+    }
+
+    @Override
+    public String getNextPage() {
+        return mNextPageUrl;
+    }
+
+    public void setNextPageUrl(String url) {
+        mNextPageUrl = url;
     }
 }

@@ -27,7 +27,13 @@ public abstract class MvpRecyclerListAdapter<M, P extends BasePresenter, VH exte
         notifyDataSetChanged();
     }
 
-
+    public void addAll(Collection<M> data) {
+        int currSize = getItemCount();
+        for (M item: data) {
+            addInternal(item);
+        }
+        notifyItemRangeInserted(currSize, getItemCount() - 1);
+    }
 
     private void addInternal(M item) {
         System.err.println("Adding item " + getModelId(item));
@@ -44,4 +50,6 @@ public abstract class MvpRecyclerListAdapter<M, P extends BasePresenter, VH exte
     protected M getItem(int position) {
         return models.get(position);
     }
+
+    public abstract String getNextPage();
 }

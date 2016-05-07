@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.univtop.univtop.R;
 import com.univtop.univtop.UnivtopApplication;
 import com.univtop.univtop.adapters.QuestionListAdapter;
+import com.univtop.univtop.listeners.EndlessRecyclerViewScrollListener;
 import com.univtop.univtop.manager.PresenterManager;
 import com.univtop.univtop.models.Question;
 import com.univtop.univtop.presenters.QuestionListPresenter;
@@ -43,7 +44,7 @@ public class QuestionListFragment extends Fragment implements QuestionListView {
     View questionList;
 
     private QuestionListAdapter mAdapter;
-
+    private boolean restoredState = false;
     private QuestionListPresenter mPresenter;
 
     @Override
@@ -52,10 +53,11 @@ public class QuestionListFragment extends Fragment implements QuestionListView {
         View rootView = inflater.inflate(R.layout.newsfeed_fragment, container, false);
         ButterKnife.bind(this, rootView);
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null && !restoredState) {
             mPresenter = new QuestionListPresenter();
         } else {
             mPresenter = PresenterManager.getInstance().restorePresenter(savedInstanceState);
+            restoredState = true;
         }
 
 //        mSwipeRefreshLayout.setColorSchemeResources(Utilities.getRefreshColorArray());
@@ -77,7 +79,16 @@ public class QuestionListFragment extends Fragment implements QuestionListView {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new QuestionListAdapter();
+        if (mPresenter.getModel() != null && mPresenter.getModel().size() != 0) {
+            mAdapter.addAll(mPresenter.getModel());
+        }
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager, mAdapter) {
+            @Override
+            public void onLoadMore(String nextPageUrl) {
+                mPresenter.fetchNextPage(nextPageUrl);
+            }
+        });
         return rootView;
     }
 
@@ -93,10 +104,11 @@ public class QuestionListFragment extends Fragment implements QuestionListView {
     }
 
     @Override
-    public void showQuestions(List<Question> questions) {
+    public void showQuestions(List<Question> questions, String nextPageUrl) {
         progressBar.setVisibility(View.GONE);
         questionList.setVisibility(View.VISIBLE);
-        mAdapter.clearAndAddAll(questions);
+        mAdapter.addAll(questions);
+        mAdapter.setNextPageUrl(nextPageUrl);
     }
 
     @Override
